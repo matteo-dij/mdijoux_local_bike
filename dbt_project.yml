@@ -2,16 +2,14 @@ name: dbt_prod_pipeline
 
 on:
   push:
-    branches: [main]
+  pull_request:
 
 jobs:
   run-dbt:
     runs-on: ubuntu-latest
-    environment: mdijoux_local_bike
 
     steps:
       - uses: actions/checkout@v3
-
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
