@@ -40,13 +40,13 @@ models:
 
     staging: 
       materialized: view
-      schema: stg_local_bike
+      +schema: stg_local_bike
 
     intermediate:
       materialized: view
-      schema: int_local_bike
+      +schema: int_local_bike
 
     mart:
       materialized: table
-      schema: mart_local_bike
+      +schema: mart_local_bike
     # Config indicated by + and applies to all files under models/example/
