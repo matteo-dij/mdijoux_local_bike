@@ -31,6 +31,10 @@ clean-targets:         # directories to be removed by `dbt clean`
 # files using the `{{ config(...) }}` macro.
 models:
   mdijoux_local_bike:
+    staging:
+      +schema: stg_local_bike
+    intermediate:
+      +schema: int_local_bike
+    marts:
+      +schema: mart_local_bike
     # Config indicated by + and applies to all files under models/example/
-    example:
-      +materialized: view
