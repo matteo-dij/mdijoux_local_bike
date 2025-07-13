@@ -23,5 +23,24 @@ jobs:
       - name: Install dbt dependencies
         run: pip install dbt-bigquery
 
+      - name: Set up GCP credentials
+        run: echo "${{ secrets.GCP_SERVICE_ACCOUNT }}" > gcp_key.json
+
+      - name: Create dbt profiles.yml
+        run: |
+          mkdir -p ~/.dbt
+          echo 'mdijoux_local_bike:
+            outputs:
+              dev:
+                type: bigquery
+                method: service-account
+                project: wise-arch-462417-r3
+                dataset: local_bike
+                keyfile: /home/runner/gcp_key.json
+                threads: 4
+                location: EU
+                priority: interactive
+            target: dev' > ~/.dbt/profiles.yml
+
       - name: Run dbt debug
         run: dbt debug --target dev

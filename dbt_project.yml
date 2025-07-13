@@ -2,9 +2,8 @@ name: dbt_prod_pipeline
 
 on:
   push:
-    branches:                    # ⚠️ déclenche sur TOUTES les branches
-      - '**'
-  pull_request:                  # ⚠️ déclenche aussi sur les PR
+    branches:
+      - main
 
 jobs:
   run-dbt:
