@@ -1,0 +1,10 @@
+[sqlfluff]
+dialect = bigquery
+templater = dbt
+exclude_rules = L009,L031
+sql_file_exts = .sql,.sql.j2
+
+[sqlfluff:templater:dbt]
+project_dir = C:\Users\Matteo\mdijoux_local_bike\mdijoux_local_bike
+profiles_dir = C:\Users\Matteo\.dbt 
+
