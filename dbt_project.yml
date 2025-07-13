@@ -38,7 +38,7 @@ models:
       
   mdijoux_local_bike:
 
-    staging:
+    staging: 
       materialized: view
       schema: stg_local_bike
 
