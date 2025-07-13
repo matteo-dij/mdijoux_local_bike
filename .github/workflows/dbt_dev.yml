@@ -1,0 +1,27 @@
+name: dbt_dev_pipeline
+
+on:
+  pull_request:
+    branches-ignore:
+      - main
+  push:
+    branches-ignore:
+      - main
+
+jobs:
+  run-dbt-dev:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dbt dependencies
+        run: pip install dbt-bigquery
+
+      - name: Run dbt debug
+        run: dbt debug --target dev
