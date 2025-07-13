@@ -22,7 +22,8 @@ jobs:
         run: pip install dbt-bigquery
 
       - name: Set up GCP credentials
-        run: echo "${{ secrets.GCP_SERVICE_ACCOUNT }}" > gcp_key.json
+        run: |
+          echo "${{ secrets.GCP_SERVICE_ACCOUNT }}" > gcp_key.json
 
       - name: Run dbt
         env:
