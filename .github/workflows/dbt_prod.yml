@@ -1,7 +1,10 @@
-name: dbt_prod_pipeline
+name: dbt_prod
 
 on:
   push:
+    branches:
+      - main
+  pull_request:  # bonus : déclenche aussi pour les PR
     branches:
       - main
 
@@ -22,8 +25,7 @@ jobs:
         run: pip install dbt-bigquery
 
       - name: Set up GCP credentials
-        run: |
-          echo "${{ secrets.GCP_SERVICE_ACCOUNT }}" | base64 -d > gcp_key.json
+        run: echo "${{secrets.GCP_SERVICE_ACCOUNT_2}}"  > gcp_key.json
 
       - name: Run dbt
         env:
@@ -33,3 +35,6 @@ jobs:
           dbt debug --target prod
           dbt run --target prod
           dbt test --target prod
+
+      - name: Clean up
+        run: rm gcp_key.json

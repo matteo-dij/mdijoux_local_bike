@@ -25,7 +25,7 @@ jobs:
 
       - name: Set up GCP credentials
         run: | 
-          echo "${{ secrets.GCP_SERVICE_ACCOUNT }}" | base64 -d > gcp_key.json
+          echo "${{secrets.GCP_SERVICE_ACCOUNT_2}}" > gcp_key.json
 
 
       - name: Create dbt profiles.yml
