@@ -1,8 +1,12 @@
-name: dbt_prod_pipeline
+name: dbt_prod
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   run-dbt:
@@ -17,17 +21,39 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Install dbt dependencies
+      - name: Install dbt
         run: pip install dbt-bigquery
 
       - name: Set up GCP credentials
-        run: echo "${{ secrets.GCP_SERVICE_ACCOUNT }}" > gcp_key.json
+        run: echo "${{ secrets.GCP_SERVICE_ACCOUNT_2 }}" > gcp_key.json
+
+      - name: Create dbt profile
+        run: |
+          mkdir -p ~/.dbt
+          cat > ~/.dbt/profiles.yml << EOL
+          mdijoux_local_bike:
+            target: prod
+            outputs:
+              prod:
+                type: bigquery
+                method: service-account
+                project: wise-arch-462417-r3
+                dataset: local_bike
+                keyfile: ${{ github.workspace }}/gcp_key.json
+                threads: 4
+                location: EU
+                priority: interactive
+                job_retries: 1
+                job_execution_timeout_seconds: 300
+          EOL
 
       - name: Run dbt
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ github.workspace }}/gcp_key.json
         run: |
           dbt deps
-          dbt debug --target prod
           dbt run --target prod
           dbt test --target prod
+
+      - name: Clean up
+        run: rm gcp_key.json

@@ -1,0 +1,48 @@
+name: dbt_dev_pipeline
+
+on:
+  pull_request:
+    branches-ignore:
+      - main
+  push:
+    branches-ignore:
+      - main
+
+jobs:
+  run-dbt-dev:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dbt dependencies
+        run: pip install dbt-bigquery
+
+      - name: Set up GCP credentials
+        run: | 
+          echo ${{secrets.GCP_SERVICE_ACCOUNT_2}} > gcp_key.json
+
+
+      - name: Create dbt profiles.yml
+        run: |
+          mkdir -p ~/.dbt
+          echo 'mdijoux_local_bike:
+            outputs:
+              dev:
+                type: bigquery
+                method: service-account
+                project: wise-arch-462417-r3
+                dataset: local_bike
+                keyfile: ${{ github.workspace }}/gcp_key.json
+                threads: 4
+                location: EU
+                priority: interactive
+            target: dev' > ~/.dbt/profiles.yml
+
+      - name: Run dbt debug
+        run: dbt debug --target dev

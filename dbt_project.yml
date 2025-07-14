@@ -1,46 +1,52 @@
-name: dbt_prod_pipeline
 
-on:
-  push:
-    branches:                    # ⚠️ déclenche sur TOUTES les branches
-      - '**'
-  pull_request:                  # ⚠️ déclenche aussi sur les PR
+# Name your project! Project names should contain only lowercase characters
+# and underscores. A good package name should reflect your organization's
+# name or the intended use of these models
+name: 'mdijoux_local_bike'
+version: '1.0.0'
 
-jobs:
-  run-dbt:
-    runs-on: ubuntu-latest
+# This setting configures which "profile" dbt uses for this project.
+profile: 'mdijoux_local_bike'
 
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
+# These configurations specify where dbt should look for different types of files.
+# The `model-paths` config, for example, states that models in this project can be
+# found in the "models/" directory. You probably won't need to change these!
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
 
-      - name: Install dbt dependencies
-        run: pip install dbt-bigquery
+clean-targets:         # directories to be removed by `dbt clean`
+  - "target"
+  - "dbt_packages"
 
-      - name: Set up GCP credentials
-        run: |
-          echo "$GCP_SERVICE_ACCOUNT" > gcp_key.json
 
-      - name: Create dbt profile
-        run: |
-          mkdir -p ~/.dbt
-          echo "
-          mdijoux_local_bike:
-            target: prod
-            outputs:
-              prod:
-                type: bigquery
-                method: service-account
-                project: wise-arch-462417-r3
-                dataset: local_bike
-                keyfile: gcp_key.json
-                threads: 4
-                location: EU
-                priority: interactive
-          " > ~/.dbt/profiles.yml
+# Configuring models
+# Full documentation: https://docs.getdbt.com/docs/configuring-models
 
-      - name: Run dbt
-        run: dbt run --profiles-dir ~/.dbt
+# In this example config, we tell dbt to build all models in the example/
+# directory as views. These settings can be overridden in the individual model
+# files using the `{{ config(...) }}` macro.
+models:
+  
+models:
+  +persist_docs:
+      relation: true
+      columns: true
+      
+  mdijoux_local_bike:
+
+    staging: 
+      materialized: view
+      schema: stg_local_bike
+
+    intermediate:
+      materialized: view
+      schema: int_local_bike
+
+    mart:
+      materialized: table
+      schema: mart_local_bike
+    # Config indicated by + and applies to all files under models/example/
