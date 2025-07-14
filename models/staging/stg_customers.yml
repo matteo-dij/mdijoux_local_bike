@@ -10,36 +10,36 @@ models:
           - not_null
           - unique
 
-      - name: first_name
+      - name: customer_first_name
         description: Customer's first name.
         data_type: string
         tests:
           - not_null
 
-      - name: last_name
+      - name: customer_last_name
         description: Customer's last name.
         data_type: string
 
-      - name: phone
+      - name: customer_phone
         description: Customer's phone number.
         data_type: string
 
-      - name: email
+      - name: customer_email
         description: Customer's email address.
         data_type: string
 
-      - name: street
+      - name: customer_street
         description: Customer's street address.
         data_type: string
 
-      - name: city
+      - name: customer_city
         description: Customer's city.
         data_type: string
 
-      - name: state
+      - name: customer_state
         description: Customer's state.
         data_type: string
 
-      - name: zip_code
+      - name: customer_zip_code
         description: Customer's zip code.
         data_type: string

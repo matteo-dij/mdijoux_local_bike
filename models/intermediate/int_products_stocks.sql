@@ -15,7 +15,7 @@ SELECT
  from {{ ref('stg_products') }}
 left join {{ ref('stg_brands') }}
 using(brand_id)
-left join {{ ref('stg_brands') }}
+left join {{ ref('stg_categories') }}
 using(category_id)
 ),
 -- cte to select all store details
