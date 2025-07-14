@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: stg_order_items
+    description: Staging table for order items.
+    columns:
+      - name: item_id
+        description: Unique identifier for the order item.
+        data_type: string
+
+      - name: order_id
+        description: Identifier for the order.
+        data_type: string
+
+      - name: product_id
+        description: Identifier for the product.
+        data_type: string
+
+      - name: quantity
+        description: Quantity of the product ordered.
+        data_type: integer
+
+      - name: price
+        description: Price of the product for this order item.
+        data_type: float
+

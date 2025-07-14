@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: stg_stocks
+    description: this staging table contains stock information for products.
+    columns:  
+    - name: store_id
+      description: store identifier where the stock is located
+      data_type: string
+      tests: 
+        - not_null
+    - name: product_id
+      description: identifier for the product in stock
+      data_type: string
+      tests: 
+        - not_null
+    - name: quantity
+      description: quantity of the product in stock 
+      data_type: integer
+      tests: 
+        - not_null

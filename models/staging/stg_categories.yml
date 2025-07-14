@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: stg_categories
+    description: this staging table contains all categories of bikes sold in the shop.
+    columns:
+
+      - name: category_id
+        description: unique identifier for the brand
+        data_type: string
+        tests:
+            - not_null
+            - unique
+      - name: category_name
+        description: this is the name of the bike brand
+        data_type: string
+        tests:
+            - not_null
+            - unique

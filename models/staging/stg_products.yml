@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: stg_products
+    description: this view contains the products available in the store, including their details such as product name, brand, category, model year, and list price.
+    columns:
+    - name: product_id
+      description: Unique identifier for each product.
+      tests: 
+        - not_null
+        - unique
+      data_type: string
+    - name: product_name
+      description: name of the product.
+      data_type: string
+    - name: brand_id
+      description: unique identifier for the brand.(you can use the brand_id to join with the stg_brands table to get the brand name)
+      data_type: string
+    - name: category_id
+      description: category_id of the product (you can use the category_id to join with the stg_categories table to get the category name)
+      data_type: string
+    - name: model_year
+      description: Year (YYYY) when the product model was released.
+      data_type: integer
+    - name: list_price
+      description: Price of the product in the store.
+      data_type: float
+

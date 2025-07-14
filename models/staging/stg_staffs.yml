@@ -1,0 +1,44 @@
+version: 2
+
+models:
+  - name: stg_staffs
+    description: this staging table contains all the staff members of local_bike
+    columns:
+    - name: staff_id
+      description: unique identifier for the staff member
+      data_type: string
+      tests:
+        - not_null
+        - unique
+    - name: first_name
+      description: first name of the staff member
+      data_type: string
+      tests:
+        - not_null
+    - name: last_name
+      description: last name of the staff member
+      data_type: string
+      tests:
+        - not_null
+    - name: email
+      description: email address of the staff member
+      data_type: string
+      tests:
+        - not_null
+        - unique
+    - name: phone
+      description: phone number of the staff member
+      data_type: string
+    - name: active
+      description: boolean indicating if the staff member is currently active 1 yes 0 no
+      data_type: boolean
+      tests:
+        - not_null
+    - name: store_id
+      description: store identifier where the staff member works
+      data_type: string
+      tests:
+        - not_null
+    - name: manager_id
+      description: staff identifier of the manager for this staff member
+      data_type: string

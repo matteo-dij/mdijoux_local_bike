@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: stg_orders
+    description:  This staging table contains all orders of local_bike
+    columns:
+       - name: order_id
+         description: Identifiant unique de la commande.
+         data_type: string
+         tests:
+           - not_null
+           - unique
+       - name: customer_id
+         description: identifier for the customer.
+         data_type: string
+         tests:
+           - not_null
+       - name: order_status
+         description: status of the order the status is in number
+         data_type: integer
+         tests: 
+            - not_null
+       - name: order_date
+         description: date when the order was placed format YYYY-MM-DD
+         data_type: date
+         tests:
+            - not_null
+       - name: required_date
+         description: date when the order is required format YYYY-MM-DD
+         data_type: date 
+       - name: shipped_date
+         description: date when the order was shipped format YYYY-MM-DD
+         data_type: date 
+       - name: store_id
+         description: identifier for the store where the order was placed.
+         data_type: string
+       - name: staff_id
+         description: identifier for the staff member who processed the order.
+         data_type: string

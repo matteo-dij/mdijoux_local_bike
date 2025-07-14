@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: stg_brands
+    description: This staging table contains all brands sold in the shop.
+    columns:
+
+      - name: brand_id
+        description: Unique identifier for the brand
+        data_type: string
+        tests:
+          - not_null
+          - unique
+
+      - name: brand_name
+        description: This is the name of the bike brand
+        data_type: string
+        tests:
+          - not_null
+          - unique

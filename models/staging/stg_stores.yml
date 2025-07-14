@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: stg_stores
+    description: this view contains the stores of local bike, including their details such as store name, address, and contact information.
+    columns:
+    - name: store_id
+      description: unique identifier for each store.
+      data_type: string
+      tests:
+        - not_null
+        - unique
+    - name: store_name
+      description: name of the store.
+      data_type: string
+    - name: phone
+      description: phone number of the store.
+      data_type: string 
+
+    - name: email
+      description: email address of the store.
+      data_type: string
+    - name: street
+      description: street address of the store.
+      data_type: string      
+    - name: city
+      description: city where the store is located.
+      data_type: string
+    - name: state
+      description: state where the store is located.
+      data_type: string
+    - name: zip_code
+      description: zip code of the store's location.
+      data_type: string
