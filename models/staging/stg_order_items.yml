@@ -20,7 +20,10 @@ models:
         description: Quantity of the product ordered.
         data_type: integer
 
-      - name: price
+      - name: list_price
         description: Price of the product for this order item.
+        data_type: float
+      - name: discount
+        description: discount applied to the product for this order item.
         data_type: float
 
