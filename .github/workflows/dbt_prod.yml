@@ -39,7 +39,7 @@ jobs:
                 method: service-account
                 project: wise-arch-462417-r3
                 dataset: local_bike
-                keyfile: "${{ github.workspace }}/gcp_key.json"
+                keyfile: ${{ github.workspace }}/gcp_key.json
                 threads: 4
                 location: EU
                 priority: interactive
