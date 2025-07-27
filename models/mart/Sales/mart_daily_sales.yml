@@ -1,0 +1,81 @@
+version: 2
+
+models:
+  -  name: mart_product_stocks
+     description: Mart table containing product stock information across all stores.
+     columns:
+        - name: order_item_id
+          description: unique identifier of the order_item_id.
+          data_type: string
+          tests:
+            - not_null
+            - unique
+       
+        - name: customer_id
+          description: customer identifier
+          data_type: string
+          tests:
+            - not_null
+        
+        - name: order_date
+          description: date when the order was placed.
+          data_type: date
+          tests:
+            - not_null
+        
+        - name: order_id
+          description: order identifier.
+          data_type: string
+
+        - name: item_id
+          description: item identifier of the order
+          data_type: string
+
+        - name: product_id
+          description: product identifier.
+          data_type: string
+
+        - name: category_name
+          description: category of the product.
+          data_type: string
+
+        - name: brand_name
+          description: name of the product's brand.
+          data_type: string
+
+        - name: product_name
+          description: name of the product.
+          data_type: string
+
+        - name: quantity
+          description: quantity of the product ordered.
+          data_type: integer
+
+        - name: product_price
+          description: price of the product.
+          data_type: float
+
+        - name: discount
+          description: discount applied to the product.
+          data_type: float
+
+        - name: sold_price
+          description: price in dollar after discount.
+          data_type: float
+
+        - name: required_date
+          description: required date for the order.
+          data_type: date 
+
+        - name: shipped_date
+          description: shipped date for the order.
+          data_type: string
+
+        - name: store_id
+          description: id of the store where the order was placed.
+          data_type: string
+
+        - name: staff_id
+          description: staff member who selle the product 
+          data_type: string
+

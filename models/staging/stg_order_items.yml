@@ -4,6 +4,14 @@ models:
   - name: stg_order_items
     description: Staging table for order items.
     columns:
+
+      - name: order_item_id
+        description: Unique identifier for the order item, created by concatenating order_id and item_id.
+        data_type: string
+        tests:
+          - not_null
+          - unique
+          
       - name: item_id
         description: Unique identifier for the order item.
         data_type: string

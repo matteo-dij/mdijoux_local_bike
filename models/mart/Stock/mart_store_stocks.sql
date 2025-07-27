@@ -18,5 +18,5 @@ group by
     product_name,	
     brand_name,
     category_name,	
-    model_year
+    model_year,
     model_year

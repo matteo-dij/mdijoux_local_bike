@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: int_products
+    description: Intermediate table all products informations
+    columns:
+
+      -  name: product_id
+         description: unique identifier for the product.
+         data_type: string
+         tests:
+          - not_null
+          - unique
+          
+      -  name: product_name
+         description: name of the product.
+         data_type: string
+
+      -  name: brand_name
+         description: brand of the product.
+         data_type: string
+ 
+
+      - name: category_name
+        description: nae of the product's category.
+        data_type: string
+
+      - name: model_year
+        description: model year of the product.
+        data_type: integer
+
+
+      - name: list_price
+        description: price in dollar of the product
+        data_type: float
+
+ 
